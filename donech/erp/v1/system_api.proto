@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package donech.erp.v1;
+
+option go_package = "erpv1";
+option java_multiple_files = true;
+option java_outer_classname = "SystemApiProto";
+option java_package = "com.donech.erp.v1";
+option php_namespace = "Donech\\Erp\\V1";
+
+import "donech/erp/v1/messages.proto";
+import "google/api/annotations.proto";
+
+//SystemAPI The System service definition.
+service SystemAPI {
+  //SaveUser.
+  rpc SaveUser(SaveUserRequest) returns (SaveUserResponse) {
+    option (google.api.http) = {
+      post: "/v1/users"
+      body: "*"
+    };
+  }
+  //CheckAccount.
+  rpc CheckAccount(CheckAccountRequest) returns (CheckAccountResponse) {
+    option (google.api.http) = {
+      post: "/v1/check/account"
+      body: "*"
+    };
+  }
+  //Users.
+  rpc Users(UsersRequest) returns (UsersResponse) {
+    option (google.api.http) = {
+      get: "/v1/users"
+    };
+  }
+}
+
+//SaveUserRequest.
+message SaveUserRequest {
+  string account = 1;
+  string name = 2;
+  string password = 3;
+}
+
+//SaveUserResponse.
+message SaveUserResponse {
+  int32 code = 1;
+  string msg = 2;
+}
+
+//UsersRequest.
+message UsersRequest {
+  string name = 1;
+  Pager pager = 2;
+}
+
+//UsersResponse.
+message UsersResponse {
+  //Data.
+  message Data {
+    int64 id = 1;
+    string name = 2;
+    string account = 3;
+    string created_time = 4;
+  }
+  int32 code = 1;
+  string msg = 2;
+  repeated Data data = 3;
+  Pager pager = 4;
+}
+
+//CheckAccountRequest.
+message CheckAccountRequest {
+  string account = 1;
+}
+
+//CheckAccountResponse.
+message CheckAccountResponse {
+  int32 code = 1;
+  string msg = 2;
+}

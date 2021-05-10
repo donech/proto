@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package donech.erp.v1;
+
+option go_package = "erpv1";
+option java_multiple_files = true;
+option java_outer_classname = "GateApiProto";
+option java_package = "com.donech.erp.v1";
+option php_namespace = "Donech\\Erp\\V1";
+
+import "google/api/annotations.proto";
+
+//GateAPI.
+service GateAPI {
+  //Login.
+  rpc Login(LoginRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post: "/v1/login"
+      body: "*"
+    };
+  }
+  //Readiness.
+  rpc Readiness(ReadinessRequest) returns (ReadinessResponse) {
+    option (google.api.http) = {
+      get: "/v1/readiness"
+    };
+  }
+  //Liveness.
+  rpc Liveness(LivenessRequest) returns (LivenessResponse) {
+    option (google.api.http) = {
+      get: "/v1/liveness"
+    };
+  }
+}
+
+//LoginRequest.
+message LoginRequest {
+  string account = 1;
+  string password = 2;
+}
+
+//LoginResponse.
+message LoginResponse {
+  int32 code = 1;
+  string msg = 2;
+  string token = 3;
+}
+
+//ReadinessRequest.
+message ReadinessRequest {}
+
+//ReadinessResponse.
+message ReadinessResponse {
+  int32 code = 1;
+  string message = 2;
+}
+
+//LivenessRequest.
+message LivenessRequest {}
+
+//LivenessResponse.
+message LivenessResponse {
+  int32 code = 1;
+  string message = 2;
+}

@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package donech.erp.v1;
+
+option go_package = "erpv1";
+option java_multiple_files = true;
+option java_outer_classname = "AdminApiProto";
+option java_package = "com.donech.erp.v1";
+option php_namespace = "Donech\\Erp\\V1";
+
+import "donech/erp/v1/messages.proto";
+import "google/api/annotations.proto";
+
+//AdminAPI service.
+service AdminAPI {
+  //GetSupplierList 获取供货商列表.
+  rpc GetSupplierList(GetSupplierListRequest) returns (GetSupplierListResponse) {
+    option (google.api.http) = {
+      get: "/v1/suppliers"
+    };
+  }
+}
+
+//GetSupplierListRequest.
+message GetSupplierListRequest {}
+
+//GetSupplierListResponse.
+message GetSupplierListResponse {
+  int32 code = 1;
+  string message = 2;
+  repeated Supplier data = 3;
+}

@@ -1,0 +1,140 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "donech/erp/v1/admin_api.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/suppliers": {
+      "get": {
+        "summary": "GetSupplierList 获取供货商列表.",
+        "operationId": "GetSupplierList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/donech.erp.v1.GetSupplierListResponse"
+            }
+          }
+        },
+        "tags": [
+          "AdminAPI"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "donech.erp.v1.Contact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "supplierId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "relations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/donech.erp.v1.Relation"
+          }
+        }
+      },
+      "description": "Contact 供货商联系人."
+    },
+    "donech.erp.v1.GetSupplierListResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/donech.erp.v1.Supplier"
+          }
+        }
+      },
+      "description": "GetSupplierListResponse."
+    },
+    "donech.erp.v1.Relation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "contactId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "type": {
+          "$ref": "#/definitions/donech.erp.v1.RelationType"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "description": "Relation 供货商联系方式."
+    },
+    "donech.erp.v1.RelationType": {
+      "type": "string",
+      "enum": [
+        "RELATION_TYPE_INVALID",
+        "RELATION_TYPE_QQ",
+        "RELATION_TYPE_TEL",
+        "RELATION_TYPE_EMAIL",
+        "RELATION_TYPE_ADDRESS"
+      ],
+      "default": "RELATION_TYPE_INVALID",
+      "description": "RelationType 联系方式枚举."
+    },
+    "donech.erp.v1.Supplier": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "contacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/donech.erp.v1.Contact"
+          }
+        }
+      },
+      "description": "Supplier 供货商."
+    }
+  }
+}

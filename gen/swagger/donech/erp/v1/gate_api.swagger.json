@@ -1,0 +1,136 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "donech/erp/v1/gate_api.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/liveness": {
+      "get": {
+        "summary": "Liveness.",
+        "operationId": "Liveness",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/donech.erp.v1.LivenessResponse"
+            }
+          }
+        },
+        "tags": [
+          "GateAPI"
+        ]
+      }
+    },
+    "/v1/login": {
+      "post": {
+        "summary": "Login.",
+        "operationId": "Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/donech.erp.v1.LoginResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/donech.erp.v1.LoginRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GateAPI"
+        ]
+      }
+    },
+    "/v1/readiness": {
+      "get": {
+        "summary": "Readiness.",
+        "operationId": "Readiness",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/donech.erp.v1.ReadinessResponse"
+            }
+          }
+        },
+        "tags": [
+          "GateAPI"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "donech.erp.v1.LivenessResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "description": "LivenessResponse."
+    },
+    "donech.erp.v1.LoginRequest": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "description": "LoginRequest."
+    },
+    "donech.erp.v1.LoginResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "description": "LoginResponse."
+    },
+    "donech.erp.v1.ReadinessResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "description": "ReadinessResponse."
+    }
+  }
+}
