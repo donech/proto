@@ -16,7 +16,7 @@ service AdminAPI {
   //GetSupplierList 获取供货商列表.
   rpc GetSupplierList(GetSupplierListRequest) returns (GetSupplierListResponse) {
     option (google.api.http) = {
-      get: "/v1/suppliers"
+      get: "/api/v1/suppliers"
     };
   }
 }
@@ -27,6 +27,6 @@ message GetSupplierListRequest {}
 //GetSupplierListResponse.
 message GetSupplierListResponse {
   int32 code = 1;
-  string message = 2;
+  string msg = 2;
   repeated Supplier data = 3;
 }

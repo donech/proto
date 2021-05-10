@@ -15,7 +15,7 @@
     "application/json"
   ],
   "paths": {
-    "/v1/suppliers": {
+    "/api/v1/suppliers": {
       "get": {
         "summary": "GetSupplierList 获取供货商列表.",
         "operationId": "GetSupplierList",
@@ -70,7 +70,7 @@
           "type": "integer",
           "format": "int32"
         },
-        "message": {
+        "msg": {
           "type": "string"
         },
         "data": {

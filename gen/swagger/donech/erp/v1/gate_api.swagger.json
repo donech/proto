@@ -15,7 +15,7 @@
     "application/json"
   ],
   "paths": {
-    "/v1/liveness": {
+    "/api/v1/liveness": {
       "get": {
         "summary": "Liveness.",
         "operationId": "Liveness",
@@ -32,7 +32,7 @@
         ]
       }
     },
-    "/v1/login": {
+    "/api/v1/login": {
       "post": {
         "summary": "Login.",
         "operationId": "Login",
@@ -59,7 +59,7 @@
         ]
       }
     },
-    "/v1/readiness": {
+    "/api/v1/readiness": {
       "get": {
         "summary": "Readiness.",
         "operationId": "Readiness",
@@ -85,7 +85,7 @@
           "type": "integer",
           "format": "int32"
         },
-        "message": {
+        "msg": {
           "type": "string"
         }
       },
@@ -94,11 +94,18 @@
     "donech.erp.v1.LoginRequest": {
       "type": "object",
       "properties": {
-        "account": {
+        "username": {
           "type": "string"
         },
         "password": {
           "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "autoLogin": {
+          "type": "boolean",
+          "format": "boolean"
         }
       },
       "description": "LoginRequest."
@@ -126,7 +133,7 @@
           "type": "integer",
           "format": "int32"
         },
-        "message": {
+        "msg": {
           "type": "string"
         }
       },
