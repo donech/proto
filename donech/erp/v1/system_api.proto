@@ -33,6 +33,12 @@ service SystemAPI {
       get: "/api/v1/users"
     };
   }
+  //CurrentUser.
+  rpc CurrentUser(CurrentUserRequest) returns (CurrentUserResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/currentUser"
+    };
+  }
 }
 
 //SaveUserRequest.
@@ -78,4 +84,24 @@ message CheckAccountRequest {
 message CheckAccountResponse {
   int32 code = 1;
   string msg = 2;
+}
+
+//CurrentUserRequest.
+message CurrentUserRequest {}
+
+//CurrentUserResponse.
+message CurrentUserResponse {
+  //Data.
+  message Data {
+    int64 id = 1;
+    string name = 2;
+    string avatar = 3;
+    string email = 4;
+    string title = 5;
+    string phone = 6;
+    string created_time = 7;
+  }
+  int32 code = 1;
+  string msg = 2;
+  Data data = 3;
 }
