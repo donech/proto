@@ -105,6 +105,13 @@
             "required": false,
             "type": "boolean",
             "format": "boolean"
+          },
+          {
+            "name": "pager.total",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
           }
         ],
         "tags": [
@@ -223,6 +230,10 @@
         "hasMore": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
         }
       },
       "description": "Pager 通用分页信息."

@@ -16,7 +16,7 @@
   ],
   "paths": {
     "/api/v1/suppliers": {
-      "get": {
+      "post": {
         "summary": "GetSupplierList 获取供货商列表.",
         "operationId": "GetSupplierList",
         "responses": {
@@ -27,6 +27,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/donech.erp.v1.GetSupplierListRequest"
+            }
+          }
+        ],
         "tags": [
           "AdminAPI"
         ]
@@ -63,6 +73,18 @@
       },
       "description": "Contact 供货商联系人."
     },
+    "donech.erp.v1.GetSupplierListRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "pager": {
+          "$ref": "#/definitions/donech.erp.v1.Pager"
+        }
+      },
+      "description": "GetSupplierListRequest."
+    },
     "donech.erp.v1.GetSupplierListResponse": {
       "type": "object",
       "properties": {
@@ -74,13 +96,51 @@
           "type": "string"
         },
         "data": {
+          "$ref": "#/definitions/donech.erp.v1.GetSupplierListResponse.Data"
+        }
+      },
+      "description": "GetSupplierListResponse."
+    },
+    "donech.erp.v1.GetSupplierListResponse.Data": {
+      "type": "object",
+      "properties": {
+        "list": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/donech.erp.v1.Supplier"
           }
+        },
+        "pager": {
+          "$ref": "#/definitions/donech.erp.v1.Pager"
         }
       },
-      "description": "GetSupplierListResponse."
+      "description": "Data."
+    },
+    "donech.erp.v1.Pager": {
+      "type": "object",
+      "properties": {
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cursor": {
+          "type": "string",
+          "format": "int64"
+        },
+        "hasMore": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "description": "Pager 通用分页信息."
     },
     "donech.erp.v1.Relation": {
       "type": "object",
