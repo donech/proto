@@ -12,7 +12,7 @@ option php_namespace = "Donech\\Util\\V1";
 message Pager {
   int32 page_size = 1;
   int32 page_num = 2;
-  int64 cursor = 3;
+  uint64 cursor = 3;
   bool has_more = 4;
   int32 total = 5;
 }
@@ -20,6 +20,6 @@ message Pager {
 //CursorPager 游标分页信息.
 message CursorPager {
   int32 page_size = 1;
-  int64 cursor = 2;
+  uint64 cursor = 2;
   bool has_more = 3;
 }

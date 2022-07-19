@@ -24,7 +24,7 @@ install:
 depend: envoy jaeger
 	@echo "start depends success"
 
-foundEnvoy := $(shell docker ps -f "name=$(ENVOY)" -q | grep -q . && echo Found || echo Not Found)
+foundEnvoy := $(shell docker ps -af "name=$(ENVOY)" -q | grep -q . && echo Found || echo Not Found)
 
 .PHONY: envoy
 ifeq ($(foundEnvoy), Found)
@@ -38,15 +38,17 @@ endif
 .PHONY: stop-envoy
 stop-envoy:
 	docker stop $(ENVOY)
+	docker rm $(ENVOY)
 
 .PHONY: start-envoy
 start-envoy:
-	docker run -itd --rm --name $(ENVOY) \
+	docker run -itd --name $(ENVOY) \
     	  -p 51051:51051 \
     	  -p 10000:10000 \
-          -v "$(shell pwd)/gen/descriptor/donech/erp/v1/v1.pb:/data/service_definition.pb:ro" \
+          -v "$(shell pwd)/gen/descriptor/donech/gate/v1/v1.pb:/data/service_definition.pb:ro" \
           -v "$(shell pwd)/envoy/envoy-config-dev.yml:/etc/envoy/envoy.yaml:ro" \
           envoyproxy/envoy
+	docker logs $(ENVOY)
 
 .PHONY: in-envory
 in-envoy:

@@ -50,7 +50,7 @@ message SaveUserRequest {
 
 //SaveUserResponse.
 message SaveUserResponse {
-  int32 code = 1;
+  uint32 code = 1;
   string msg = 2;
 }
 
@@ -64,12 +64,12 @@ message UsersRequest {
 message UsersResponse {
   //Data.
   message Data {
-    int64 id = 1;
+    uint64 id = 1;
     string name = 2;
     string account = 3;
     string created_time = 4;
   }
-  int32 code = 1;
+  uint32 code = 1;
   string msg = 2;
   repeated Data data = 3;
   donech.util.v1.Pager pager = 4;
@@ -82,7 +82,7 @@ message CheckAccountRequest {
 
 //CheckAccountResponse.
 message CheckAccountResponse {
-  int32 code = 1;
+  uint32 code = 1;
   string msg = 2;
 }
 
@@ -93,7 +93,7 @@ message CurrentUserRequest {}
 message CurrentUserResponse {
   //Data.
   message Data {
-    int64 id = 1;
+    uint64 id = 1;
     string name = 2;
     string avatar = 3;
     string email = 4;
@@ -101,7 +101,7 @@ message CurrentUserResponse {
     string phone = 6;
     string created_time = 7;
   }
-  int32 code = 1;
+  uint32 code = 1;
   string msg = 2;
   Data data = 3;
 }

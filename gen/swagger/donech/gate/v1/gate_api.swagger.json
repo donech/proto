@@ -75,6 +75,23 @@
           "GateAPI"
         ]
       }
+    },
+    "/api/v1/system": {
+      "get": {
+        "summary": "SystemInfo.",
+        "operationId": "SystemInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/donech.gate.v1.SystemInfoResponse"
+            }
+          }
+        },
+        "tags": [
+          "GateAPI"
+        ]
+      }
     }
   },
   "definitions": {
@@ -83,7 +100,7 @@
       "properties": {
         "code": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         },
         "msg": {
           "type": "string"
@@ -115,7 +132,7 @@
       "properties": {
         "code": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         },
         "msg": {
           "type": "string"
@@ -140,7 +157,7 @@
       "properties": {
         "code": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         },
         "msg": {
           "type": "string"
@@ -153,13 +170,50 @@
       "properties": {
         "code": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         },
         "msg": {
           "type": "string"
         }
       },
       "description": "ReadinessResponse."
+    },
+    "donech.gate.v1.SystemInfoResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/donech.gate.v1.SystemInfoResponse.Data"
+        }
+      },
+      "description": "SystemInfoResponse."
+    },
+    "donech.gate.v1.SystemInfoResponse.Data": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "copyright": {
+          "type": "string"
+        },
+        "desc": {
+          "type": "string"
+        },
+        "href": {
+          "type": "string"
+        }
+      },
+      "description": "Data."
     }
   }
 }

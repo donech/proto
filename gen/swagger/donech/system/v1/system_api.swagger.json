@@ -97,7 +97,7 @@
             "in": "query",
             "required": false,
             "type": "string",
-            "format": "int64"
+            "format": "uint64"
           },
           {
             "name": "pager.hasMore",
@@ -160,7 +160,7 @@
       "properties": {
         "code": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         },
         "msg": {
           "type": "string"
@@ -173,7 +173,7 @@
       "properties": {
         "code": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         },
         "msg": {
           "type": "string"
@@ -189,7 +189,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "format": "int64"
+          "format": "uint64"
         },
         "name": {
           "type": "string"
@@ -232,7 +232,7 @@
       "properties": {
         "code": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         },
         "msg": {
           "type": "string"
@@ -245,7 +245,7 @@
       "properties": {
         "code": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         },
         "msg": {
           "type": "string"
@@ -267,7 +267,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "format": "int64"
+          "format": "uint64"
         },
         "name": {
           "type": "string"
@@ -294,7 +294,7 @@
         },
         "cursor": {
           "type": "string",
-          "format": "int64"
+          "format": "uint64"
         },
         "hasMore": {
           "type": "boolean",
