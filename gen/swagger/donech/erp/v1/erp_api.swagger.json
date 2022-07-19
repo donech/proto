@@ -1,0 +1,200 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "donech/erp/v1/erp_api.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/suppliers": {
+      "post": {
+        "summary": "GetSupplierList 获取供货商列表.",
+        "operationId": "GetSupplierList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/donech.erp.v1.GetSupplierListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/donech.erp.v1.GetSupplierListRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ErpAPI"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "donech.erp.v1.Contact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "supplierId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "relations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/donech.erp.v1.Relation"
+          }
+        }
+      },
+      "description": "Contact 供货商联系人."
+    },
+    "donech.erp.v1.GetSupplierListRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "pager": {
+          "$ref": "#/definitions/donech.util.v1.Pager"
+        }
+      },
+      "description": "GetSupplierListRequest."
+    },
+    "donech.erp.v1.GetSupplierListResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/donech.erp.v1.GetSupplierListResponse.Data"
+        }
+      },
+      "description": "GetSupplierListResponse."
+    },
+    "donech.erp.v1.GetSupplierListResponse.Data": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/donech.erp.v1.Supplier"
+          }
+        },
+        "pager": {
+          "$ref": "#/definitions/donech.util.v1.Pager"
+        }
+      },
+      "description": "Data."
+    },
+    "donech.erp.v1.Relation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "contactId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "type": {
+          "$ref": "#/definitions/donech.erp.v1.RelationType"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "description": "Relation 供货商联系方式."
+    },
+    "donech.erp.v1.RelationType": {
+      "type": "string",
+      "enum": [
+        "RELATION_TYPE_INVALID",
+        "RELATION_TYPE_QQ",
+        "RELATION_TYPE_TEL",
+        "RELATION_TYPE_EMAIL",
+        "RELATION_TYPE_ADDRESS"
+      ],
+      "default": "RELATION_TYPE_INVALID",
+      "description": "RelationType 联系方式枚举."
+    },
+    "donech.erp.v1.Supplier": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "contacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/donech.erp.v1.Contact"
+          }
+        }
+      },
+      "description": "Supplier 供货商."
+    },
+    "donech.util.v1.Pager": {
+      "type": "object",
+      "properties": {
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cursor": {
+          "type": "string",
+          "format": "int64"
+        },
+        "hasMore": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "description": "Pager 通用分页信息."
+    }
+  }
+}

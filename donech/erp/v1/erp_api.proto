@@ -4,15 +4,16 @@ package donech.erp.v1;
 
 option go_package = "erpv1";
 option java_multiple_files = true;
-option java_outer_classname = "AdminApiProto";
+option java_outer_classname = "ErpApiProto";
 option java_package = "com.donech.erp.v1";
 option php_namespace = "Donech\\Erp\\V1";
 
-import "donech/erp/v1/messages.proto";
+import "donech/erp/v1/erp_message.proto";
+import "donech/util/v1/util.proto";
 import "google/api/annotations.proto";
 
-//AdminAPI service.
-service AdminAPI {
+//ErpAPI service.
+service ErpAPI {
   //GetSupplierList 获取供货商列表.
   rpc GetSupplierList(GetSupplierListRequest) returns (GetSupplierListResponse) {
     option (google.api.http) = {
@@ -25,7 +26,7 @@ service AdminAPI {
 //GetSupplierListRequest.
 message GetSupplierListRequest {
   string name = 1;
-  Pager pager = 2;
+  donech.util.v1.Pager pager = 2;
 }
 
 //GetSupplierListResponse.
@@ -33,7 +34,7 @@ message GetSupplierListResponse {
   //Data.
   message Data {
     repeated Supplier list = 1;
-    Pager pager = 2;
+    donech.util.v1.Pager pager = 2;
   }
   int32 code = 1;
   string msg = 2;

@@ -1,0 +1,165 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "donech/gate/v1/gate_api.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/liveness": {
+      "get": {
+        "summary": "Liveness.",
+        "operationId": "Liveness",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/donech.gate.v1.LivenessResponse"
+            }
+          }
+        },
+        "tags": [
+          "GateAPI"
+        ]
+      }
+    },
+    "/api/v1/login": {
+      "post": {
+        "summary": "Logout.",
+        "operationId": "Logout",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/donech.gate.v1.LogoutResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/donech.gate.v1.LogoutRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GateAPI"
+        ]
+      }
+    },
+    "/api/v1/readiness": {
+      "get": {
+        "summary": "Readiness.",
+        "operationId": "Readiness",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/donech.gate.v1.ReadinessResponse"
+            }
+          }
+        },
+        "tags": [
+          "GateAPI"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "donech.gate.v1.LivenessResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        }
+      },
+      "description": "LivenessResponse."
+    },
+    "donech.gate.v1.LoginRequest": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "autoLogin": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "description": "LoginRequest."
+    },
+    "donech.gate.v1.LoginResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "description": "LoginResponse."
+    },
+    "donech.gate.v1.LogoutRequest": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      },
+      "description": "LogoutRequest."
+    },
+    "donech.gate.v1.LogoutResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        }
+      },
+      "description": "LogoutResponse."
+    },
+    "donech.gate.v1.ReadinessResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        }
+      },
+      "description": "ReadinessResponse."
+    }
+  }
+}

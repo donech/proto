@@ -1,19 +1,26 @@
 syntax = "proto3";
 
-package donech.erp.v1;
+package donech.gate.v1;
 
-option go_package = "erpv1";
+option go_package = "gatev1";
 option java_multiple_files = true;
 option java_outer_classname = "GateApiProto";
-option java_package = "com.donech.erp.v1";
-option php_namespace = "Donech\\Erp\\V1";
+option java_package = "com.donech.gate.v1";
+option php_namespace = "Donech\\Gate\\V1";
 
 import "google/api/annotations.proto";
 
-//GateAPI.
+//GateAPI 大门口.
 service GateAPI {
-  //Login.
+  //Login 登陆.
   rpc Login(LoginRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/login"
+      body: "*"
+    };
+  }
+  //Logout.
+  rpc Logout(LogoutRequest) returns (LogoutResponse) {
     option (google.api.http) = {
       post: "/api/v1/login"
       body: "*"
@@ -46,6 +53,17 @@ message LoginResponse {
   int32 code = 1;
   string msg = 2;
   string token = 3;
+}
+
+//LogoutRequest.
+message LogoutRequest {
+  string token = 1;
+}
+
+//LogoutResponse.
+message LogoutResponse {
+  int32 code = 1;
+  string msg = 2;
 }
 
 //ReadinessRequest.

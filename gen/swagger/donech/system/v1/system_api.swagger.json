@@ -1,0 +1,311 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "donech/system/v1/system_api.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/check/account": {
+      "post": {
+        "summary": "CheckAccount.",
+        "operationId": "CheckAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/donech.system.v1.CheckAccountResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/donech.system.v1.CheckAccountRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SystemAPI"
+        ]
+      }
+    },
+    "/api/v1/user/current": {
+      "get": {
+        "summary": "CurrentUser.",
+        "operationId": "CurrentUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/donech.system.v1.CurrentUserResponse"
+            }
+          }
+        },
+        "tags": [
+          "SystemAPI"
+        ]
+      }
+    },
+    "/api/v1/users": {
+      "get": {
+        "summary": "Users.",
+        "operationId": "Users",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/donech.system.v1.UsersResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pager.pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pager.pageNum",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pager.cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "pager.hasMore",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
+          },
+          {
+            "name": "pager.total",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "SystemAPI"
+        ]
+      },
+      "post": {
+        "summary": "SaveUser.",
+        "operationId": "SaveUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/donech.system.v1.SaveUserResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/donech.system.v1.SaveUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SystemAPI"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "donech.system.v1.CheckAccountRequest": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        }
+      },
+      "description": "CheckAccountRequest."
+    },
+    "donech.system.v1.CheckAccountResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        }
+      },
+      "description": "CheckAccountResponse."
+    },
+    "donech.system.v1.CurrentUserResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/donech.system.v1.CurrentUserResponse.Data"
+        }
+      },
+      "description": "CurrentUserResponse."
+    },
+    "donech.system.v1.CurrentUserResponse.Data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "string"
+        }
+      },
+      "description": "Data."
+    },
+    "donech.system.v1.SaveUserRequest": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "description": "SaveUserRequest."
+    },
+    "donech.system.v1.SaveUserResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        }
+      },
+      "description": "SaveUserResponse."
+    },
+    "donech.system.v1.UsersResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/donech.system.v1.UsersResponse.Data"
+          }
+        },
+        "pager": {
+          "$ref": "#/definitions/donech.util.v1.Pager"
+        }
+      },
+      "description": "UsersResponse."
+    },
+    "donech.system.v1.UsersResponse.Data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "account": {
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "string"
+        }
+      },
+      "description": "Data."
+    },
+    "donech.util.v1.Pager": {
+      "type": "object",
+      "properties": {
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cursor": {
+          "type": "string",
+          "format": "int64"
+        },
+        "hasMore": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "description": "Pager 通用分页信息."
+    }
+  }
+}

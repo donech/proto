@@ -1,14 +1,14 @@
 syntax = "proto3";
 
-package donech.erp.v1;
+package donech.system.v1;
 
-option go_package = "erpv1";
+option go_package = "systemv1";
 option java_multiple_files = true;
 option java_outer_classname = "SystemApiProto";
-option java_package = "com.donech.erp.v1";
-option php_namespace = "Donech\\Erp\\V1";
+option java_package = "com.donech.system.v1";
+option php_namespace = "Donech\\System\\V1";
 
-import "donech/erp/v1/messages.proto";
+import "donech/util/v1/util.proto";
 import "google/api/annotations.proto";
 
 //SystemAPI The System service definition.
@@ -36,7 +36,7 @@ service SystemAPI {
   //CurrentUser.
   rpc CurrentUser(CurrentUserRequest) returns (CurrentUserResponse) {
     option (google.api.http) = {
-      get: "/api/v1/currentUser"
+      get: "/api/v1/user/current"
     };
   }
 }
@@ -57,7 +57,7 @@ message SaveUserResponse {
 //UsersRequest.
 message UsersRequest {
   string name = 1;
-  Pager pager = 2;
+  donech.util.v1.Pager pager = 2;
 }
 
 //UsersResponse.
@@ -72,7 +72,7 @@ message UsersResponse {
   int32 code = 1;
   string msg = 2;
   repeated Data data = 3;
-  Pager pager = 4;
+  donech.util.v1.Pager pager = 4;
 }
 
 //CheckAccountRequest.
