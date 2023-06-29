@@ -95,7 +95,7 @@ static_resources:
                   - name: envoy.filters.http.grpc_json_transcoder
                     typed_config:
                       "@type": type.googleapis.com/envoy.extensions.filters.http.grpc_json_transcoder.v3.GrpcJsonTranscoder
-                      proto_descriptor: "/data/service_definition.pb"
+                      proto_descriptor: "/data/gate.pb"
                       services: ["donech.gate.v1.GateAPI"]
                       print_options:
                         add_whitespace: true
@@ -111,10 +111,15 @@ static_resources:
       lb_policy: round_robin
       dns_lookup_family: V4_ONLY
       http2_protocol_options: {}
-      hosts:
-        - socket_address:
-            address: host.docker.internal
-            port_value: 20000
+      load_assignment:
+        cluster_name: jaeger
+        endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address:
+                      address: host.docker.internal
+                      port_value: 20000
     - name: jaeger
       connect_timeout: 1s
       type: STRICT_DNS

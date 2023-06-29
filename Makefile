@@ -45,9 +45,9 @@ start-envoy:
 	docker run -itd --name $(ENVOY) \
     	  -p 51051:51051 \
     	  -p 10000:10000 \
-          -v "$(shell pwd)/gen/descriptor/donech/gate/v1/v1.pb:/data/service_definition.pb:ro" \
+          -v "$(shell pwd)/gen/descriptor/donech/gate/v1/v1.pb:/data/gate.pb:ro" \
           -v "$(shell pwd)/envoy/envoy-config-dev.yml:/etc/envoy/envoy.yaml:ro" \
-          envoyproxy/envoy
+          envoyproxy/envoy:v1.26-latest
 	docker logs $(ENVOY)
 
 .PHONY: in-envory
@@ -57,9 +57,9 @@ in-envoy:
 .PHONY: valid-envoy
 valid-envoy:
 	docker run --rm \
-              -v "$(shell pwd)/gen/descriptor/donech/erp/v1/v1.pb:/data/service_definition.pb:ro" \
+              -v "$(shell pwd)/gen/descriptor/donech/gate/v1/v1.pb:/data/gate.pb:ro" \
               -v "$(shell pwd)/envoy/envoy-config-dev.yml:/etc/envoy/envoy.yaml:ro" \
-              envoyproxy/envoy \
+              envoyproxy/envoy:v1.26-latest \
               --mode validate -c /etc/envoy/envoy.yaml
 
 

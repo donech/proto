@@ -22,7 +22,7 @@ service GateAPI {
   //Logout.
   rpc Logout(LogoutRequest) returns (LogoutResponse) {
     option (google.api.http) = {
-      post: "/api/v1/login"
+      post: "/api/v1/logout"
       body: "*"
     };
   }

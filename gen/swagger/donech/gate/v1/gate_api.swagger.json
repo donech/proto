@@ -34,6 +34,33 @@
     },
     "/api/v1/login": {
       "post": {
+        "summary": "Login 登陆.",
+        "operationId": "Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/donech.gate.v1.LoginResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/donech.gate.v1.LoginRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GateAPI"
+        ]
+      }
+    },
+    "/api/v1/logout": {
+      "post": {
         "summary": "Logout.",
         "operationId": "Logout",
         "responses": {
